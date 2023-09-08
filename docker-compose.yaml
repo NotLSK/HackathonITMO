@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - .\db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  server:
+    build: .\HackathonITMO
+    volumes:
+      - .\HackathonITMO:/app
+    ports:
+      - "1080:80"
+
+volumes:
+  db:
+    driver: local
