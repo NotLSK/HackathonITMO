@@ -18,7 +18,7 @@ async def upload_shelf_image(file: UploadFile, db: AsyncSession = Depends(get_as
 
         shelf_info = process_shelf_image(image)
 
-        #await save_shelf_info(db, shelf_info)
+        await save_shelf_info(db, shelf_info)
 
         return shelf_info
     except Exception as e:
