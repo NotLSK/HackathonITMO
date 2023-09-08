@@ -83,11 +83,9 @@ def send_price_tag_image_to_server(image_data):
 
 # Функция для форматирования информации о полке
 def format_shelf_info(shelf_info):
-    formatted_info = f"Размер полки: {shelf_info['shelf_size']}\n"
-    formatted_info += f"Количество товаров: {shelf_info['total_items']}\n"
-    formatted_info += "Список товаров:\n"
-    for item in shelf_info['items']:
-        formatted_info += f"- {item}\n"
+    formatted_info = f"Количество товаров: {shelf_info['goods']}\n"
+    formatted_info += f"Количество пропусков: {shelf_info['passes']}\n"
+    formatted_info += f"Размер полки: {shelf_info['size']}\n"
     return formatted_info
 
 # Функция для форматирования информации о ценнике

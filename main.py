@@ -5,7 +5,7 @@ from io import BytesIO
 from PIL import Image
 
 from src.database import get_async_session
-from src.models import goods
+from src.models import goods, shelves
 
 app = FastAPI()
 
@@ -45,32 +45,30 @@ async def upload_price_tag_image(file: UploadFile, db: AsyncSession = Depends(ge
 
 
 def process_shelf_image(image):
-    shelf_size = "120x60"
-    total_items = 3
-    items = ["Товар 1", "Товар 2", "Товар 3"]
+    goods = 4
+    passes = 2
+    size = 79.13
 
-    return {"shelf_size": shelf_size, "total_items": total_items, "items": items}
+    return {"goods": goods, "passes": passes, "size": size}
 
 
 def process_price_tag_image(image):
     barcode = "4650075427750"
-    name = "Напиток безалкогольный ДОБРЫЙ Кола с/газ ПЭТ (Россия)"
+    name = "Напиток безалкогольный ДОБРЫЙ Кола сгаз ПЭТ (Россия)"
     price = 150
     promo = True
 
     return {"barcode": barcode, "name": name, "price": price, "promo": promo}
 
 
-"""
 async def save_shelf_info(db: AsyncSession, shelf_info: dict):
     async with db.begin() as transaction:
-        query = shelfs.insert().values(
-            shelf_size=shelf_info["shelf_size"],
-            total_items=shelf_info["total_items"],
-            items="\n".join(shelf_info["items"])
+        query = shelves.insert().values(
+            goods=shelf_info["goods"],
+            passes=shelf_info["passes"],
+            size=shelf_info["size"]
         )
         await db.execute(query)
-"""
 
 
 async def get_product_by_barcode_or_name(db: AsyncSession, barcode: str, name: str):
@@ -89,12 +87,12 @@ async def get_product_by_barcode_or_name(db: AsyncSession, barcode: str, name: s
 
 
 async def save_price_tag_info(db: AsyncSession, price_tag_info: dict):
-        query = goods.insert().values(
-            barcode=price_tag_info["barcode"],
-            name=price_tag_info["name"],
-            price=price_tag_info["price"],
-            promo=price_tag_info["promo"]
-        )
-        await db.execute(query)
-        await db.commit()
+    query = goods.insert().values(
+        barcode=price_tag_info["barcode"],
+        name=price_tag_info["name"],
+        price=price_tag_info["price"],
+        promo=price_tag_info["promo"]
+    )
+    await db.execute(query)
+    await db.commit()
 

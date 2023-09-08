@@ -11,3 +11,12 @@ goods = Table(
     Column("price", Float),
     Column("promo", Boolean)
 )
+
+shelves = Table(
+    "shelves",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("goods", Integer),
+    Column("passes", Integer),
+    Column("size", Float)
+)
