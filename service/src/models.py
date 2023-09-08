@@ -20,3 +20,12 @@ shelves = Table(
     Column("total_items", Integer),
     Column("total_empty_space", String)
 )
+
+shelves = Table(
+    "shelves",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("goods", Integer),
+    Column("passes", Integer),
+    Column("size", Float)
+)
