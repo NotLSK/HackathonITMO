@@ -1,0 +1,7 @@
+sqlalchemy 
+alembic
+asyncpg
+Pillow
+opencv-python
+ultralytics
+easyocr
