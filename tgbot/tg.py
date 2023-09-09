@@ -2,7 +2,7 @@ import telebot
 import requests
 from io import BytesIO
 
-bot = telebot.TeleBot('6537004211:AAFrz9r8hd-vYMmwdhoOzsolA3ZeEcaE3j8')
+bot = telebot.TeleBot('API_TOKEN')
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
